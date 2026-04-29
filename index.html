@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia tesste</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      width: 100%;
+      padding: 18px 8%;
+      background: #0b0b0b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #d4af37;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+      url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: #d4af37;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 26px;
+      background: #d4af37;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background: #f1c94d;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #bbb;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .about-text h2 {
+      font-size: 34px;
+      margin-bottom: 18px;
+      color: #d4af37;
+    }
+
+    .about-text p {
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #2a2a2a;
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #d4af37;
+    }
+
+    .service-card h3 {
+      color: #d4af37;
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .service-card p {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.04);
+    }
+
+    .booking-box {
+      max-width: 650px;
+      margin: auto;
+      background: #1a1a1a;
+      padding: 35px;
+      border-radius: 14px;
+      border: 1px solid #333;
+    }
+
+    .booking-box label {
+      display: block;
+      margin-bottom: 7px;
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    .booking-box input,
+    .booking-box select,
+    .booking-box textarea {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 18px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .booking-box textarea {
+      resize: none;
+      height: 90px;
+    }
+
+    .location-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .info-card {
+      background: #1a1a1a;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid #333;
+    }
+
+    .info-card h3 {
+      color: #d4af37;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .info-card p {
+      margin-bottom: 12px;
+      color: #ddd;
+    }
+
+    iframe {
+      width: 100%;
+      height: 330px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      text-decoration: none;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.4);
+      z-index: 999;
+    }
+
+    footer {
+      background: #080808;
+      text-align: center;
+      padding: 28px 8%;
+      color: #aaa;
+      border-top: 1px solid #222;
+    }
+
+    footer span {
+      color: #d4af37;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .about,
+      .location-content {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding: 0 6%;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      section {
+        padding: 60px 6%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Barbearia Teste</div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#galeria">Fotos</a>
+      <a href="#agendar">Agendar</a>
+      <a href="#localizacao">Localização</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Seu visual merece um <span>corte de respeito</span></h1>
+      <p>Corte masculino, barba, acabamento e atendimento de qualidade para você sair no estilo.</p>
+      <a class="btn" href="#agendar">Agendar agora</a>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="about">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=80" alt="Barbeiro cortando cabelo">
+      <div class="about-text">
+        <h2>Sobre a barbearia</h2>
+        <p>A Barbearia Corte Fino nasceu para entregar mais do que um simples corte: aqui você encontra estilo, confiança e um atendimento feito com atenção aos detalhes.</p>
+        <p>Trabalhamos com cortes modernos, clássicos, barba alinhada e acabamento profissional, sempre buscando deixar cada cliente satisfeito com o resultado.</p>
+        <p>Venha conhecer nosso espaço e transformar seu visual.</p>
+        <a class="btn" href="https://wa.me/5500000000000" target="_blank">Chamar no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="section-title">
+      <h2>Serviços</h2>
+      <p>Escolha o serviço ideal para você</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Corte Masculino</h3>
+        <p>Corte moderno ou clássico, feito no estilo que combina com você.</p>
+        <div class="price">R$ 35</div>
+      </div>
+
+      <div class="service-card">
+        <h3>Barba</h3>
+        <p>Barba alinhada, desenhada e finalizada com cuidado.</p>
+        <div class="price">R$ 25</div>
+      </div>
+
+      <div class="service-card">
+        <h3>Corte + Barba</h3>
+        <p>Pacote completo para sair renovado e no estilo.</p>
+        <div class="price">R$ 55</div>
+      </div>
+
+      <div class="service-card">
+        <h3>Acabamento</h3>
+        <p>Pezinho e detalhes para manter o corte sempre alinhado.</p>
+        <div class="price">R$ 15</div>
+      </div>
+
+      <div class="service-card">
+        <h3>Sobrancelha</h3>
+        <p>Limpeza e alinhamento para valorizar o rosto.</p>
+        <div class="price">R$ 10</div>
+      </div>
+
+      <div class="service-card">
+        <h3>Relaxamento</h3>
+        <p>Serviço para quem quer mudar ou alinhar melhor o cabelo.</p>
+        <div class="price">R$ 40</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="section-title">
+      <h2>Fotos dos cortes</h2>
+      <p>Alguns estilos para você se inspirar</p>
+    </div>
+
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=80" alt="Corte masculino">
+      <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Barbearia">
+      <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?auto=format&fit=crop&w=900&q=80" alt="Corte degradê">
+      <img src="https://images.unsplash.com/photo-1534297635766-a262cdcb8ee4?auto=format&fit=crop&w=900&q=80" alt="Barba alinhada">
+    </div>
+  </section>
+
+  <section id="agendar">
+    <div class="section-title">
+      <h2>Agende seu horário</h2>
+      <p>Preencha os dados e envie direto para o WhatsApp</p>
+    </div>
+
+    <div class="booking-box">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" placeholder="Digite seu nome">
+
+      <label for="servico">Serviço desejado</label>
+      <select id="servico">
+        <option value="Corte Masculino">Corte Masculino</option>
+        <option value="Barba">Barba</option>
+        <option value="Corte + Barba">Corte + Barba</option>
+        <option value="Acabamento">Acabamento</option>
+        <option value="Sobrancelha">Sobrancelha</option>
+        <option value="Relaxamento">Relaxamento</option>
+      </select>
+
+      <label for="data">Data desejada</label>
+      <input type="date" id="data">
+
+      <label for="hora">Horário desejado</label>
+      <input type="time" id="hora">
+
+      <label for="obs">Observação</label>
+      <textarea id="obs" placeholder="Ex: quero corte degradê, barba desenhada..."></textarea>
+
+      <button class="btn" onclick="enviarWhatsApp()">Enviar agendamento</button>
+    </div>
+  </section>
+
+  <section id="localizacao">
+    <div class="section-title">
+      <h2>Localização</h2>
+      <p>Venha fazer seu corte com a gente</p>
+    </div>
+
+    <div class="location-content">
+      <div class="info-card">
+        <h3>Informações</h3>
+        <p><strong>Endereço:</strong> Rua Exemplo, 123 - Centro</p>
+        <p><strong>Cidade:</strong> Sua Cidade - MG</p>
+        <p><strong>Horário:</strong> Segunda a sábado, das 9h às 19h</p>
+        <p><strong>WhatsApp:</strong> (00) 00000-0000</p>
+        <p><strong>Instagram:</strong> @barbeariacortefino</p>
+      </div>
+
+      <iframe src="https://www.google.com/maps?q=Divin%C3%B3polis%20MG&output=embed" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" href="https://wa.me/5500000000000" target="_blank">☏</a>
+
+  <footer>
+    <p>© 2026 <span>Barbearia Corte Fino</span> - Todos os direitos reservados.</p>
+    <p>Site desenvolvido por Seu Nome</p>
+  </footer>
+
+  <script>
+    function enviarWhatsApp() {
+      const nome = document.getElementById('nome').value;
+      const servico = document.getElementById('servico').value;
+      const data = document.getElementById('data').value;
+      const hora = document.getElementById('hora').value;
+      const obs = document.getElementById('obs').value;
+
+      if (!nome || !data || !hora) {
+        alert('Preencha seu nome, data e horário antes de enviar.');
+        return;
+      }
+
+      const telefone = '5500000000000'; // Troque pelo WhatsApp da barbearia com DDD. Ex: 5537999999999
+
+      const mensagem = `Olá! Quero agendar um horário.%0A%0A` +
+        `Nome: ${nome}%0A` +
+        `Serviço: ${servico}%0A` +
+        `Data: ${data}%0A` +
+        `Horário: ${hora}%0A` +
+        `Observação: ${obs || 'Nenhuma'}`;
+
+      window.open(`https://wa.me/${telefone}?text=${mensagem}`, '_blank');
+    }
+  </script>
+</body>
+</html>
